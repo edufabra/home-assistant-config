@@ -87,3 +87,6 @@ ble_monitor:
       name: 'Passadis'      
 
 browser_mod:
+
+ifttt:
+  key: !secret ifttt_key
