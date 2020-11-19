@@ -217,3 +217,19 @@
       data_template:
         entity_id: input_number.temperatura_exterior_maxima_graus
         value: '{{ -10 }}'
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.temperatura_exterior_maxima_ahir_hora
+      data_template:
+          time: "{{ states.input_datetime.temperatura_exterior_maxima_hora.state }}"
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.temperatura_exterior_minima_ahir_hora
+      data_template:
+          time: "{{ states.input_datetime.temperatura_exterior_minima_hora.state }}"
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.temperatura_exterior_minima_hora
+      data_template:
+        time: "{{ now().strftime('%H:%M:%S') }}"
+    - service: input_datetime.set_datetime
+      entity_id: input_datetime.temperatura_exterior_maxima_hora
+      data_template:
+        time: "{{ now().strftime('%H:%M:%S') }}"        
