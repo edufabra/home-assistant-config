@@ -67,7 +67,6 @@ input_select:
 input_number:
   temperatura_exterior_maxima_graus:
     name: T. Màxima
-    initial: -10
     min: -10
     max: 40
     mode: box
@@ -75,7 +74,6 @@ input_number:
     icon: hass:thermometer
   temperatura_exterior_minima_graus:
     name: T. Mínima
-    initial: 40
     min: -10
     max: 40
     mode: box
