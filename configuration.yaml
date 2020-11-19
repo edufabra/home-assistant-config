@@ -64,21 +64,7 @@ input_select:
     initial: Apagada  
     icon: mdi:washing-machine
 
-input_number:
-  temperatura_exterior_maxima_graus:
-    name: T. Màxima
-    min: -10
-    max: 40
-    mode: box
-    unit_of_measurement: ºC
-    icon: hass:thermometer
-  temperatura_exterior_minima_graus:
-    name: T. Mínima
-    min: -10
-    max: 40
-    mode: box
-    unit_of_measurement: ºC
-    icon: hass:thermometer  
+input_number: !include_dir_named input_number/
 
 input_datetime:
   temperatura_exterior_maxima_hora:

@@ -5,6 +5,8 @@
 !*.yaml
 !.gitignore
 !*.md
+!input_number/
+!input_number/*.yaml
 
 # Ignore folders.
 .storage
