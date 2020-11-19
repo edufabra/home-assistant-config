@@ -1,0 +1,196 @@
+- id: rentadora_rentant
+  alias: Rentadora - Rentant
+  trigger:
+  - above: '60'
+    entity_id: sensor.sala_maquines_endoll_rentadora_consum_actual
+    for: 00:00:10
+    platform: numeric_state
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_select.sala_maquines_estat_rentadora
+      state: Rentant
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.sala_maquines_estat_rentadora
+      option: Rentant
+    entity_id: input_select.sala_maquines_estat_rentadora
+  mode: single
+- id: rentadora_stand_by
+  alias: Rentadora - Stand-by
+  trigger:
+  - below: '5'
+    entity_id: sensor.sala_maquines_endoll_rentadora_consum_actual
+    for: 00:01:00
+    platform: numeric_state
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.sala_maquines_estat_rentadora
+      option: Stand-by
+    entity_id: input_select.sala_maquines_estat_rentadora
+  mode: single
+- id: rentadora_llesta
+  alias: Rentadora ha acabat
+  trigger:
+  - entity_id: input_select.sala_maquines_estat_rentadora
+    from: Rentant
+    platform: state
+    to: Stand-by
+  action:
+  - type: turn_off
+    device_id: 552a2c8dfcee11ea91ae19105657d7e9
+    entity_id: switch.sala_maquines_endoll_rentadora
+    domain: switch
+  - data:
+      option: Apagada
+    entity_id: input_select.sala_maquines_estat_rentadora
+    service: input_select.select_option
+  mode: single
+- id: '1600462979682'
+  alias: Rentadora apagada manual
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 552a2c8dfcee11ea91ae19105657d7e9
+    entity_id: switch.sala_maquines_endoll_rentadora
+    domain: switch
+  condition: []
+  action:
+  - data:
+      option: Apagada
+    entity_id: input_select.sala_maquines_estat_rentadora
+    service: input_select.select_option
+  mode: single
+- id: '1601400826100'
+  alias: Encendre llum TV a les 21:00 si la TV està encesa
+  description: Encendre llum TV a les 21:00 si la TV està encesa
+  trigger:
+  - platform: time_pattern
+    hours: '21'
+    minutes: '00'
+  condition:
+  - condition: device
+    device_id: de01dbffc14946daa8d83857ae5d8229
+    domain: media_player
+    entity_id: media_player.menjador_tv
+    type: is_on
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'off'
+  action:
+  - type: turn_on
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single
+- id: '1601400826101'
+  alias: Encendre llum TV a partir de les 21:00 quan s'encengui la TV
+  description: Encendre llum TV a les 21:00 quan s'encengui la TV
+  trigger:
+  - platform: state
+    entity_id: media_player.menjador_tv
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '21:00'
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'off'
+  action:
+  - type: turn_on
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single
+- id: '1601402521291'
+  alias: Apaga llum TV si ja fa 2 minuts que s’ha apagat la TV
+  description: Apaga la llum TV si ja fa 2 minuts que s'ha apagat la TV
+  trigger:
+  - platform: state
+    entity_id: media_player.menjador_tv
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 2
+  condition:
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'on'
+  - condition: state
+    entity_id: media_player.menjador_tv
+    state: 'off'
+  action:
+  - type: turn_off
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single
+- id: 'apaga_endoll_tv_quan_tv_apagada'
+  alias: Apaga Endoll TV si ja fa 2 minuts que s’ha apagat la TV
+  description: Apaga la llum TV si ja fa 2 minuts que s'ha apagat la TV
+  trigger:
+  - platform: state
+    entity_id: media_player.menjador_tv
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
+    state: 'on'
+  action:
+  - type: turn_off
+    device_id: 5c127e650dfb11eb81db657c437003bb
+    entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
+    domain: switch
+  mode: single
+
+- id: 'actualitzar_temperatura_exterior_maxima_graus_i_hora'
+  alias: Actualitzar la temperatura exterior màxima i la hora a la que s'ha produït
+  trigger:
+      platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: sensor.ble_temperature_terrassa
+  condition:
+      - condition: template
+        value_template: >
+          {% set T1 = states.input_number.temperatura_exterior_maxima_graus.state | float + 273.15 %}
+          {% set T2 = states.sensor.ble_temperature_terrassa.state | float + 273.15 %}
+          {{ T2 > T1 }}    
+  action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.temperatura_exterior_maxima_graus
+          value: '{{ states.sensor.ble_temperature_terrassa.state | float | round(1) }}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.temperatura_exterior_maxima_hora
+        data_template:
+          time: "{{ now().strftime('%H:%M:%S') }}"
+
+- id: 'actualitzar_temperatura_exterior_minima_graus_i_hora'
+  alias: Actualitzar la temperatura exterior mínima i la hora a la que s'ha produït
+  trigger:
+      platform: event
+      event_type: state_changed
+      event_data:
+        entity_id: sensor.ble_temperature_terrassa
+  condition:
+      - condition: template
+        value_template: >
+          {% set T1 = states.input_number.temperatura_exterior_minima_graus.state | float + 273.15 %}
+          {% set T2 = states.sensor.ble_temperature_terrassa.state | float + 273.15 %}
+          {{ T2 < T1 }}    
+  action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.temperatura_exterior_minima_graus
+          value: '{{ states.sensor.ble_temperature_terrassa.state | float | round(1) }}'
+      - service: input_datetime.set_datetime
+        entity_id: input_datetime.temperatura_exterior_minima_hora
+        data_template:
+          time: "{{ now().strftime('%H:%M:%S') }}"                        

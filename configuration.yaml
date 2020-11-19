@@ -1,0 +1,114 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+homeassistant:
+  latitude: !secret homeassistant_latitude
+  longitude: !secret homeassistant_longitude
+  elevation: !secret homeassistant_elevation
+  unit_system: metric
+  external_url: !secret homeassistant_url
+  internal_url: !secret homeassistant_url
+
+http:
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+wake_on_lan:
+
+device_tracker:
+  - platform: xiaomi
+    host: !secret xiaomi_router_ip
+    password: !secret xiaomi_router_password
+      
+webostv:
+  host: !secret lg_tv_menjador_ip
+  name: TV LG Menjador
+  turn_on_action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
+    - delay:
+        seconds: 30
+    - service: wake_on_lan.send_magic_packet
+      data:
+        "mac": !secret lg_tv_menjador_mac
+  customize:
+    sources:
+      - livetv
+      - youtube
+      - primevideo
+
+media_player:
+
+notify:      
+      
+input_select:
+  sala_maquines_estat_rentadora:
+    name: Estat rentadora
+    options:
+      - Apagada
+      - Stand-by
+      - Rentant
+    initial: Apagada  
+    icon: mdi:washing-machine
+
+input_number:
+  temperatura_exterior_maxima_graus:
+    name: T. Màxima
+    initial: -10
+    min: -10
+    max: 40
+    mode: box
+    unit_of_measurement: ºC
+    icon: hass:thermometer
+  temperatura_exterior_minima_graus:
+    name: T. Mínima
+    initial: 40
+    min: -10
+    max: 40
+    mode: box
+    unit_of_measurement: ºC
+    icon: hass:thermometer  
+
+input_datetime:
+  temperatura_exterior_maxima_hora:
+    name: Hora Temperatura Màxima
+    has_date: false
+    has_time: true
+  temperatura_exterior_minima_hora:
+    name: Hora Temperatura Mínima
+    has_date: false
+    has_time: true
+
+home_connect:
+  client_id: !secret home_connect_client_id
+  client_secret: !secret home_connect_client_secret
+
+ble_monitor:
+  devices:
+    - mac: 'A4:C1:38:F4:51:AC'
+      name: 'Despatx'
+    - mac: 'A4:C1:38:61:4F:21'
+      name: 'Cuina'
+    - mac: 'A4:C1:38:D3:06:E3'
+      name: 'Arlet'
+    - mac: 'A4:C1:38:48:74:A0'
+      name: 'Matrimoni'
+    - mac: 'A4:C1:38:D3:E8:7F'    
+      name: 'Terrassa'
+    - mac: 'A4:C1:38:E6:38:B0'
+      name: 'Passadis'      
+
+browser_mod:
