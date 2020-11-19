@@ -65,16 +65,7 @@ input_select:
     icon: mdi:washing-machine
 
 input_number: !include_dir_named input_number/
-
-input_datetime:
-  temperatura_exterior_maxima_hora:
-    name: Hora Temperatura Màxima
-    has_date: false
-    has_time: true
-  temperatura_exterior_minima_hora:
-    name: Hora Temperatura Mínima
-    has_date: false
-    has_time: true
+input_datetime: !include_dir_named input_datetime/
 
 home_connect:
   client_id: !secret home_connect_client_id
