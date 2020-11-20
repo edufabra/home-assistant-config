@@ -232,4 +232,25 @@
     - service: input_datetime.set_datetime
       entity_id: input_datetime.temperatura_exterior_maxima_hora
       data_template:
-        time: "{{ now().strftime('%H:%M:%S') }}"        
+        time: "{{ now().strftime('%H:%M:%S') }}"
+
+- id: 'enviar_registre_temperatures_i_hores_a_google_spreadsheets_via_IFTTT'
+  alias: Enviar el registre de temperatures i l'hora a la que s'han produït a un full de Google Spreadsheet via IFTTT
+  trigger:
+    platform: zone
+    event: enter
+    zone: zone.home
+    entity_id: device_tracker.10_c2_5a_f2_82_d9
+  action:
+    - service: ifttt.trigger
+      data:
+        event: "registre_temperatura_exterior"
+        value1: "Temperatura Mínima"
+        value2: "{{ states.input_number.temperatura_exterior_minima_ahir_graus.state | float | round(1) }}"
+        value3: "{{ states.input_datetime.temperatura_exterior_minima_ahir_hora.state }}"
+    - service: ifttt.trigger
+      data:
+        event: "registre_temperatura_exterior"
+        value1: "Temperatura Màxima"
+        value2: "{{ states.input_number.temperatura_exterior_maxima_ahir_graus.state | float | round(1) }}"
+        value3: "{{ states.input_datetime.temperatura_exterior_maxima_ahir_hora.state }}"     
