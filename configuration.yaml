@@ -90,3 +90,27 @@ browser_mod:
 
 ifttt:
   key: !secret ifttt_key
+
+sensor:
+  - platform: sql
+    queries:
+      - name: DB Size
+        query: 'SELECT ROUND(page_count * page_size / 1024 / 1024, 1) as size FROM pragma_page_count(), pragma_page_size();'
+        column: 'size'
+        unit_of_measurement: 'MiB'
+      - name: yesterday_max_temperature
+        query: "SELECT MAX(CAST(state AS float)) AS temperature, strftime('%H:%M', datetime(strftime('%s', last_updated), 'unixepoch', 'localtime')) AS time FROM states WHERE entity_id = 'sensor.ble_temperature_terrassa' and last_updated BETWEEN strftime('%Y-%m-%d 00:00:00', DATETIME('now','-1 day')) AND strftime('%Y-%m-%d 23:59:59', DATETIME('now','-1 day')) and state NOT IN ('unknown','unavailable');"
+        column: 'temperature'
+        unit_of_measurement: 'ºC'
+      - name: yesterday_min_temperature
+        query: "SELECT MIN(CAST(state AS float)) AS temperature, strftime('%H:%M', datetime(strftime('%s', last_updated), 'unixepoch', 'localtime')) AS time FROM states WHERE entity_id = 'sensor.ble_temperature_terrassa' and last_updated BETWEEN strftime('%Y-%m-%d 00:00:00', DATETIME('now','-1 day')) AND strftime('%Y-%m-%d 23:59:59', DATETIME('now','-1 day')) and state NOT IN ('unknown','unavailable');"
+        column: 'temperature'
+        unit_of_measurement: 'ºC'
+      - name: today_max_temperature
+        query: "SELECT MAX(CAST(state AS float)) AS temperature, strftime('%H:%M', datetime(strftime('%s', last_updated), 'unixepoch', 'localtime')) AS time FROM states WHERE entity_id = 'sensor.ble_temperature_terrassa' and last_updated BETWEEN strftime('%Y-%m-%d 00:00:00', DATETIME('now')) AND strftime('%Y-%m-%d 23:59:59', DATETIME('now')) and state NOT IN ('unknown','unavailable');"
+        column: 'temperature'
+        unit_of_measurement: 'ºC'
+      - name: today_min_temperature
+        query: "SELECT MIN(CAST(state AS float)) AS temperature, strftime('%H:%M', datetime(strftime('%s', last_updated), 'unixepoch', 'localtime')) AS time FROM states WHERE entity_id = 'sensor.ble_temperature_terrassa' and last_updated BETWEEN strftime('%Y-%m-%d 00:00:00', DATETIME('now')) AND strftime('%Y-%m-%d 23:59:59', DATETIME('now')) and state NOT IN ('unknown','unavailable');"
+        column: 'temperature'
+        unit_of_measurement: 'ºC'     

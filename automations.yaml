@@ -149,108 +149,24 @@
     domain: switch
   mode: single
 
-- id: 'actualitzar_temperatura_exterior_maxima_graus_i_hora'
-  alias: Actualitzar la temperatura exterior màxima i la hora a la que s'ha produït
-  trigger:
-      platform: event
-      event_type: state_changed
-      event_data:
-        entity_id: sensor.ble_temperature_terrassa
-  condition:
-      - condition: template
-        value_template: >
-          {% set T1 = states.input_number.temperatura_exterior_maxima_graus.state | float + 273.15 %}
-          {% set T2 = states.sensor.ble_temperature_terrassa.state | float + 273.15 %}
-          {{ T2 > T1 }}    
-  action:
-      - service: input_number.set_value
-        data_template:
-          entity_id: input_number.temperatura_exterior_maxima_graus
-          value: '{{ states.sensor.ble_temperature_terrassa.state | float | round(1) }}'
-      - service: input_datetime.set_datetime
-        entity_id: input_datetime.temperatura_exterior_maxima_hora
-        data_template:
-          time: "{{ now().strftime('%H:%M:%S') }}"
-
-- id: 'actualitzar_temperatura_exterior_minima_graus_i_hora'
-  alias: Actualitzar la temperatura exterior mínima i la hora a la que s'ha produït
-  trigger:
-      platform: event
-      event_type: state_changed
-      event_data:
-        entity_id: sensor.ble_temperature_terrassa
-  condition:
-      - condition: template
-        value_template: >
-          {% set T1 = states.input_number.temperatura_exterior_minima_graus.state | float + 273.15 %}
-          {% set T2 = states.sensor.ble_temperature_terrassa.state | float + 273.15 %}
-          {{ T2 < T1 }}    
-  action:
-      - service: input_number.set_value
-        data_template:
-          entity_id: input_number.temperatura_exterior_minima_graus
-          value: '{{ states.sensor.ble_temperature_terrassa.state | float | round(1) }}'
-      - service: input_datetime.set_datetime
-        entity_id: input_datetime.temperatura_exterior_minima_hora
-        data_template:
-          time: "{{ now().strftime('%H:%M:%S') }}"
-
-- id: 'resetejar_minimes_i_maximes_i_passar_valors_al_dia_anterior'
-  alias: Resetejar mínimes i màximes actuals i passar-les al valors del dia anterior
-  trigger:
-    platform: time
-    at: '00:00:00'
-  action:
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.temperatura_exterior_minima_ahir_graus
-        value: '{{ states.input_number.temperatura_exterior_minima_graus.state | float | round(1) }}'
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.temperatura_exterior_minima_graus
-        value: '{{ 40 }}'    
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.temperatura_exterior_maxima_ahir_graus
-        value: '{{ states.input_number.temperatura_exterior_maxima_graus.state | float | round(1) }}'
-    - service: input_number.set_value
-      data_template:
-        entity_id: input_number.temperatura_exterior_maxima_graus
-        value: '{{ -10 }}'
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.temperatura_exterior_maxima_ahir_hora
-      data_template:
-          time: "{{ states.input_datetime.temperatura_exterior_maxima_hora.state }}"
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.temperatura_exterior_minima_ahir_hora
-      data_template:
-          time: "{{ states.input_datetime.temperatura_exterior_minima_hora.state }}"
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.temperatura_exterior_minima_hora
-      data_template:
-        time: "{{ now().strftime('%H:%M:%S') }}"
-    - service: input_datetime.set_datetime
-      entity_id: input_datetime.temperatura_exterior_maxima_hora
-      data_template:
-        time: "{{ now().strftime('%H:%M:%S') }}"
-
 - id: 'enviar_registre_temperatures_i_hores_a_google_spreadsheets_via_IFTTT'
   alias: Enviar el registre de temperatures i l'hora a la que s'han produït a un full de Google Spreadsheet via IFTTT
   trigger:
     platform: state
     entity_id: !secret internet_router_entity_id
-    from: 'away'
     to: 'home'
   action:
+    - delay: 
+        minutes: 5
     - service: ifttt.trigger
       data:
         event: "registre_temperatura_exterior"
-        value1: "Temperatura Mínima"
-        value2: "{{ states.input_number.temperatura_exterior_minima_ahir_graus.state | float | round(1) }}"
-        value3: "{{ states.input_datetime.temperatura_exterior_minima_ahir_hora.state }}"
+        value1: "Temperatura Mínima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
+        value2: "{{ states.sensor.yesterday_min_temperature.attributes.temperature }}"
+        value3: "{{ states.sensor.yesterday_min_temperature.attributes.time }}"
     - service: ifttt.trigger
       data:
         event: "registre_temperatura_exterior"
-        value1: "Temperatura Màxima"
-        value2: "{{ states.input_number.temperatura_exterior_maxima_ahir_graus.state | float | round(1) }}"
-        value3: "{{ states.input_datetime.temperatura_exterior_maxima_ahir_hora.state }}"        
+        value1: "Temperatura Màxima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
+        value2: "{{ states.sensor.yesterday_max_temperature.attributes.temperature }}"
+        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}" 
