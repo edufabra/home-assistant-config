@@ -67,7 +67,7 @@
   mode: single
 - id: '1601400826100'
   alias: Encendre llum TV a les 21:00 si la TV està encesa
-  description: Encendre llum TV a les 21:00 si la TV està encesa
+  description: Encendre llum TV a les 21:00 si la TV està encesa i la làmpara de peu no està encesa
   trigger:
   - platform: time_pattern
     hours: '21'
@@ -79,6 +79,9 @@
     entity_id: media_player.menjador_tv
     type: is_on
   - condition: state
+    entity_id: switch.menjador_endoll_lampara_de_peu
+    state: 'off'
+  - condition: state
     entity_id: light.menjador_llum_tv
     state: 'off'
   action:
@@ -89,7 +92,7 @@
   mode: single
 - id: '1601400826101'
   alias: Encendre llum TV a partir de les 21:00 quan s'encengui la TV
-  description: Encendre llum TV a les 21:00 quan s'encengui la TV
+  description: Encendre llum TV a les 21:00 quan s'encengui la TV si la làmpara de peu no està encesa
   trigger:
   - platform: state
     entity_id: media_player.menjador_tv
@@ -98,6 +101,9 @@
   condition:
   - condition: time
     after: '21:00'
+  - condition: state
+    entity_id: switch.menjador_endoll_lampara_de_peu
+    state: 'off'
   - condition: state
     entity_id: light.menjador_llum_tv
     state: 'off'
@@ -131,17 +137,13 @@
     domain: light
   mode: single
 - id: 'apaga_endoll_tv_quan_tv_apagada'
-  alias: Apaga Endoll TV si ja fa 2 minuts que s’ha apagat la TV
-  description: Apaga la llum TV si ja fa 2 minuts que s'ha apagat la TV
+  alias: Apaga Endoll TV al apagar la TV
+  description: Apaga Endoll al apagar la TV
   trigger:
   - platform: state
     entity_id: media_player.menjador_tv
     from: 'on'
     to: 'off'
-  condition:
-  - condition: state
-    entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
-    state: 'on'
   action:
   - type: turn_off
     device_id: 5c127e650dfb11eb81db657c437003bb
@@ -169,4 +171,4 @@
         event: "registre_temperatura_exterior"
         value1: "Temperatura Màxima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
         value2: "{{ states.sensor.yesterday_max_temperature.attributes.temperature }}"
-        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}" 
+        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}"   
