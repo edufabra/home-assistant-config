@@ -171,4 +171,25 @@
         event: "registre_temperatura_exterior"
         value1: "Temperatura Màxima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
         value2: "{{ states.sensor.yesterday_max_temperature.attributes.temperature }}"
-        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}"   
+        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}" 
+
+- id: 'encendre_llum_tv_al_apagar_llum_de_peu_si_tv_encesa'
+  alias: Encendre llum TV al apagar la llum de peu si la TV està encesa
+  trigger:
+    platform: state
+    entity_id: switch.menjador_endoll_lampara_de_peu
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'off'
+  - condition: state
+    entity_id: media_player.menjador_tv
+    state: 'on'
+  action:
+  - type: turn_on
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single          
