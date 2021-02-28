@@ -115,4 +115,6 @@ sensor:
       - name: today_min_temperature
         query: "SELECT MIN(CAST(state AS float)) AS temperature, strftime('%H:%M', datetime(strftime('%s', last_updated), 'unixepoch', 'localtime')) AS time FROM states WHERE entity_id = 'sensor.ble_temperature_terrassa' and last_updated BETWEEN strftime('%Y-%m-%d 00:00:00', DATETIME('now')) AND strftime('%Y-%m-%d 23:59:59', DATETIME('now')) and state NOT IN ('unknown','unavailable');"
         column: 'temperature'
-        unit_of_measurement: 'ºC'     
+        unit_of_measurement: 'ºC'    
+
+google_assistant: !include google_assistant.yaml  
