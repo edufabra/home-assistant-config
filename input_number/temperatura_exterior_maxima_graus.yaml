@@ -1,7 +1,0 @@
-
-name: T. Màxima
-min: -10
-max: 40
-mode: box
-unit_of_measurement: ºC
-icon: hass:thermometer

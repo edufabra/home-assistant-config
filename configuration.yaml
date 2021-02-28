@@ -66,9 +66,6 @@ input_select:
     initial: Apagada  
     icon: mdi:washing-machine
 
-input_number: !include_dir_named input_number/
-input_datetime: !include_dir_named input_datetime/
-
 home_connect:
   client_id: !secret home_connect_client_id
   client_secret: !secret home_connect_client_secret
