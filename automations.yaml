@@ -211,7 +211,8 @@
   - data:
       entity_id: switch.menjador_endoll_lampara_de_peu
     service: switch.turn_on
-  mode: single            
+  mode: single 
+
 - id: 'timelapse_camera_exterior'
   alias: Agafar captura de la webcam exterior
   trigger:
@@ -247,3 +248,19 @@
     - service: shell_command.delete_files_webcam_exterior
       data: {}
   mode: single
+
+- id: 'apagar endoll esterilla als 95 minuts'
+  alias: "Apagar l'endoll de la esterilla si ja s'ha acabat el temps de 90 minuts per al que està programat"
+  trigger:
+    platform: state
+    entity_id: switch.habitacio_matrimoni_inma_endoll_esterilla
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 1
+      minutes: 35
+      seconds: 0
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.habitacio_matrimoni_inma_endoll_esterilla
