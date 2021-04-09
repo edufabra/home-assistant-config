@@ -5,6 +5,8 @@
 !*.yaml
 !.gitignore
 !*.md
+!shell_command/
+!shell_command/*.yaml
 
 # Ignore folders.
 .storage
@@ -15,3 +17,4 @@
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+service_account.json
