@@ -5,10 +5,6 @@
 !*.yaml
 !.gitignore
 !*.md
-!input_number/
-!input_number/*.yaml
-!input_datetime/
-!input_datetime/*.yaml
 
 # Ignore folders.
 .storage
