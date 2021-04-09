@@ -212,3 +212,21 @@
       entity_id: switch.menjador_endoll_lampara_de_peu
     service: switch.turn_on
   mode: single            
+- id: 'timelapse_camera_exterior'
+  alias: Agafar captura de la webcam exterior
+  trigger:
+    - platform: time_pattern
+      minutes: /6
+  condition:
+    - condition: sun
+      before: sunset
+      before_offset: '01:00:00'
+      after: sunrise
+      after_offset: '-01:00:00'
+  action:
+    - service: camera.snapshot
+      data:
+        filename: >-
+                  /config/www/images/webcam/webcam_exterior_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
+      entity_id: camera.camara_exterior_mainstream
+  mode: single
