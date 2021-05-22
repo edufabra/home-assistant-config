@@ -1,0 +1,22 @@
+go_to_bed:
+  alias: "Anem a dormir"
+  icon: "mdi:bed"
+  description: "Apaga la TV, les llums, encén la llum de la habitació de matrimoni i al cap d'una estona apaga la connexió a Internet"
+  # If called again while still running (probably in delay step), start over.
+  mode: restart
+  sequence:
+    - alias: "Apaga llums"
+      service: switch.turn_off
+      entity_id:
+        - switch.tasmota3
+        - switch.menjador_endoll_lampara_de_peu
+    - alias: "Encén Llum Tauleta Eduard de l'habitació de matrimoni"
+      service: switch.turn_on
+      target:
+        entity_id: switch.habitacio_matrimoni_eduard_endoll_tauleta_nit
+    - delay:
+        minutes: 10
+    - alias: "Apaga endoll router connexió a Internet"
+      service: switch.turn_off
+      target:
+        entity_id: switch.tasmota_zeoota_wp30_despatx_1
