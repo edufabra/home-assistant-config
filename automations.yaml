@@ -264,3 +264,13 @@
     service: switch.turn_off
     data:
       entity_id: switch.habitacio_matrimoni_inma_endoll_esterilla
+      
+- id: 'encendre router internet a les 7:00 del mati'
+  alias: "Encendre l'endoll del router a les 7:00 del matí"
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.tasmota_zeoota_wp30_despatx_1
+  
