@@ -1,0 +1,10 @@
+  - platform: gpio
+    id: button1
+    name: button1
+    internal: true
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      - switch.toggle: relay1

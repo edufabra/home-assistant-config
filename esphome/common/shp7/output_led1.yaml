@@ -1,0 +1,5 @@
+  - platform: esp8266_pwm
+    id: led1
+    pin:
+      number: GPIO13
+      inverted: true

@@ -1,0 +1,14 @@
+---
+wifi:
+  ssid: !secret wifissid
+  password: !secret wifipw
+  manual_ip:
+    static_ip: ${static_ip}
+    gateway: ${gateway}
+    subnet: ${subnet}
+    dns1: 1.1.1.1
+    dns2: 1.0.0.1
+  fast_connect: true
+  ap:
+    ssid: ${device}
+    password: !secret esphome_appw

@@ -1,0 +1,5 @@
+- platform: total_daily_energy
+  name: '${name} daily energy'
+  power_id: power
+  unit_of_measurement: kWh
+  accuracy_decimals: 5

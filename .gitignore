@@ -7,6 +7,16 @@
 !*.md
 !shell_command/
 !shell_command/*.yaml
+!esphome/
+!esphome/common/
+!esphome/common/*.yaml
+!esphome/common/sensor/
+!esphome/common/sensor/*.yaml
+!esphome/common/text_sensor/
+!esphome/common/text_sensor/*.yaml
+!esphome/common/shp7/
+!esphome/common/shp7/*.yaml
+!esphome/*.yaml
 
 # Ignore folders.
 .storage
