@@ -1,0 +1,18 @@
+substitutions:
+  device: shp7_endoll_despatx
+  name: shp7_endoll_despatx_sota_taula
+  static_ip: 192.168.0.44
+  gateway: 192.168.0.1
+  subnet: 255.255.255.0
+  update_interval: 10min
+  current_res: '0.002291'
+  voltage_div: '940'
+
+esphome:
+  name: '${device}'
+  platform: ESP8266
+  board: esp8285
+
+<<: !include common/common.yaml
+
+<<: !include common/shp7/shp7_common.yaml
