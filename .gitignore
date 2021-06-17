@@ -17,6 +17,9 @@
 !esphome/common/shp7/
 !esphome/common/shp7/*.yaml
 !esphome/*.yaml
+!input_boolean/
+!input_boolean/*.yaml
+
 
 # Ignore folders.
 .storage
