@@ -1,0 +1,19 @@
+binary_sensor:
+  - <<: !include ../../common/shp7/binary_sensor_button1.yaml
+  - <<: !include ../../common/shp7/binary_sensor_button2.yaml
+  - <<: !include ../../common/shp7/binary_sensor_gpio15.yaml
+
+output:
+  - <<: !include ../../common/shp7/output_led1.yaml
+  - <<: !include ../../common/shp7/output_led2.yaml
+
+switch:
+  - <<: !include ../../common/shp7/switch_relay1.yaml
+  - <<: !include ../../common/shp7/switch_relay2.yaml
+
+<<: !include ../../common/shp7/status_led.yaml
+
+sensor:
+  - <<: !include ../../common/sensors.yaml
+  - <<: !include ../../common/shp7/sensor-hlw8012.yaml
+  - <<: !include ../../common/shp7/sensor-daily-energy.yaml
