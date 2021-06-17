@@ -1,0 +1,4 @@
+  - platform: gpio
+    pin: GPIO15
+    id: gpio15_irq
+    internal: true
