@@ -84,6 +84,9 @@
   - condition: state
     entity_id: light.menjador_llum_tv
     state: 'off'
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
   action:
   - type: turn_on
     device_id: 9b7ecb30fd1a11ea901e1148b48278d9
@@ -101,6 +104,9 @@
   condition:
   - condition: time
     after: '21:00'
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
   - condition: state
     entity_id: switch.menjador_endoll_lampara_de_peu
     state: 'off'
@@ -182,6 +188,9 @@
     to: 'off'
   condition:
   - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  - condition: state
     entity_id: light.menjador_llum_tv
     state: 'off'
   - condition: state
@@ -201,6 +210,9 @@
     entity_id: light.menjador_llum_tv
     to: 'off'
   condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
   - condition: state
     entity_id: switch.menjador_endoll_lampara_de_peu
     state: 'off'
