@@ -1,162 +1,19 @@
 substitutions:
-  device_name: shp7_endoll_tauleta_nit_inma
-  # Higher value gives lower watt readout
+  device: shp7_endoll_tauleta_nit_inma
+  name: shp7_endoll_tauleta_nit_inma
+  static_ip: 192.168.0.37
+  gateway: 192.168.0.1
+  subnet: 255.255.255.0
+  update_interval: 10min
   current_res: '0.002291'
-  # Lower value gives lower voltage readout
   voltage_div: '940'
-  # BW-SHP7, dual outlet with powermonitoring.
-  # One button for each relay, and one red led for each relay, as well as a blue status led
-  # Static IP is configured, and fast_connect is enabled, as the SSID is hidden
-  # Webserver is active and pw protected, and the OTA is password protected
 
 esphome:
-  name: '${device_name}'
+  name: '${device}'
   platform: ESP8266
   board: esp8285
-  on_boot:
-    then:
-#      - switch.turn_on: relay1
-#      - switch.turn_on: relay2
 
-wifi:
-  ssid: !secret wifissid
-  password: !secret wifipw
-#  reboot_timeout: 60min
-  manual_ip:
-    static_ip: 192.168.0.37
-    gateway: 192.168.0.1
-    subnet: 255.255.255.0
-  fast_connect: true
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "${device_name} HS"
-    password: !secret esphome_appw
+<<: !include common/common.yaml
 
-logger:
-  baud_rate: 0
+<<: !include common/shp7/shp7_common.yaml
 
-web_server:
-  port: 80
-  auth:
-    username: !secret esphome_webuser
-    password: !secret esphome_webpw
-
-api:
-
-ota:
-  password: !secret esphome_otapw
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-
-text_sensor:
-  - platform: version
-    name: "${device_name} ESPHome Version"
-  - platform: wifi_info
-    ip_address:
-      name: "${device_name} ip"
-    ssid:
-      name: "${device_name} ssid"
-
-binary_sensor:
-  - platform: gpio
-    id: button1
-    name: button1
-    internal: true
-    pin:
-      number: GPIO0
-      mode: INPUT_PULLUP
-      inverted: true
-    on_press:
-      - switch.toggle: relay1
-  - platform: gpio
-    id: button2
-    name: button2
-    internal: true
-    pin:
-      number: GPIO12
-      mode: INPUT_PULLUP
-      inverted: true
-    on_press:
-      - switch.toggle: relay2
-
-output:
-   - platform: esp8266_pwm
-     id: led1
-     pin:
-       number: GPIO13
-       inverted: true
-   - platform: esp8266_pwm
-     id: led2
-     pin:
-       number: GPIO2
-       inverted: true
-
-switch:
-  - platform: gpio
-    pin: GPIO14
-    id: relay1
-    name: 'relay1'
-    on_turn_on:
-      - output.turn_on: led1
-    on_turn_off:
-      - output.turn_off: led1
-  - platform: gpio
-    pin: GPIO16
-    id: relay2
-    name: 'relay2'
-    on_turn_on:
-      - output.turn_on: led2
-    on_turn_off:
-      - output.turn_off: led2
-
-status_led:
-  pin:
-    number: GPIO01
-    inverted: true
-
-sensor:
-  - platform: wifi_signal
-    name: '${device_name} wifi signal'
-    update_interval: 60s
-    accuracy_decimals: 0
-  - platform: uptime
-    name: '${device_name} uptime'
-    unit_of_measurement: days
-    update_interval: 300s
-    accuracy_decimals: 1
-    filters:
-      - multiply: 0.000011574
-  - platform: hlw8012
-    sel_pin:
-      number: GPIO03
-      inverted: true
-    cf_pin: GPIO04
-    cf1_pin: GPIO05
-    current_resistor: ${current_res}
-    voltage_divider: ${voltage_div}
-    current:
-      name: '${device_name} current'
-      unit_of_measurement: 'A'
-      accuracy_decimals: 3
-      icon: mdi:flash-outline
-    voltage:
-      name: '${device_name} voltage'
-      unit_of_measurement: 'V'
-      icon: mdi:flash-outline
-    power:
-      name: '${device_name} power'
-      unit_of_measurement: 'kW'
-      id: power
-      accuracy_decimals: 3
-      filters:
-        - multiply: 0.001
-      icon: mdi:flash-outline
-    change_mode_every: 4
-    update_interval: 10s
-  - platform: total_daily_energy
-    name: '${device_name} daily energy'
-    power_id: power
-    unit_of_measurement: kWh
-    accuracy_decimals: 5
