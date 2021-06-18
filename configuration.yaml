@@ -33,7 +33,7 @@ device_tracker:
   - platform: xiaomi
     host: !secret xiaomi_router_ip
     password: !secret xiaomi_router_password
-      
+
 webostv:
   host: !secret lg_tv_menjador_ip
   name: TV LG Menjador
@@ -54,8 +54,6 @@ webostv:
 
 media_player:
 
-notify:      
-      
 input_select:
   sala_maquines_estat_rentadora:
     name: Estat rentadora
@@ -63,7 +61,7 @@ input_select:
       - Apagada
       - Stand-by
       - Rentant
-    initial: Apagada  
+    initial: Apagada
     icon: mdi:washing-machine
 
 home_connect:
@@ -80,10 +78,10 @@ ble_monitor:
       name: 'Arlet'
     - mac: 'A4:C1:38:48:74:A0'
       name: 'Matrimoni'
-    - mac: 'A4:C1:38:D3:E8:7F'    
+    - mac: 'A4:C1:38:D3:E8:7F'
       name: 'Terrassa'
     - mac: 'A4:C1:38:E6:38:B0'
-      name: 'Passadis'      
+      name: 'Passadis'
 
 browser_mod:
 
@@ -102,7 +100,7 @@ sensor:
   - platform: sql
     db_url: !secret recorder_db_url
     scan_interval: 10800
-    queries:       
+    queries:
       - name: yesterday_max_temperature
         query: 'SELECT state AS temperature, DATE_FORMAT(CONVERT_TZ(last_updated, "UTC", "Europe/Andorra"), "%H:%i") AS time FROM states WHERE entity_id = "sensor.ble_temperature_terrassa" and DATE(last_updated) = SUBDATE(CURDATE(), 1) and state NOT IN ("unknown","unavailable") GROUP BY state ORDER BY CAST(state AS float) DESC LIMIT 1;'
         column: 'temperature'
@@ -114,7 +112,7 @@ sensor:
   - platform: sql
     db_url: !secret recorder_db_url
     scan_interval: 300
-    queries: 
+    queries:
       - name: today_max_temperature
         query: 'SELECT state AS temperature, DATE_FORMAT(CONVERT_TZ(last_updated, "UTC", "Europe/Andorra"), "%H:%i") AS time FROM states WHERE entity_id = "sensor.ble_temperature_terrassa" and DATE(last_updated) = CURDATE() and state NOT IN ("unknown","unavailable") GROUP BY state ORDER BY CAST(state AS float) DESC LIMIT 1;'
         column: 'temperature'
