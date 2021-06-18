@@ -122,7 +122,47 @@ sensor:
       - name: today_min_temperature
         query: 'SELECT state AS temperature, DATE_FORMAT(CONVERT_TZ(last_updated, "UTC", "Europe/Andorra"), "%H:%i") AS time FROM states WHERE entity_id = "sensor.ble_temperature_terrassa" and DATE(last_updated) = CURDATE() and state NOT IN ("unknown","unavailable") GROUP BY state ORDER BY CAST(state AS float) ASC LIMIT 1;'
         column: 'temperature'
-        unit_of_measurement: 'ºC' 
+        unit_of_measurement: 'ºC'
+
+  - platform: edistribucion
+    username: !secret e_distribucion_user_name
+    password: !secret e_distribucion_password
+    short_interval: 10
+    long_interval: 60
+    explode_sensors:
+        - cont
+        - energy_today
+        - energy_yesterday
+        - cycle_current
+        - cycle_last
+
+  - platform: template
+    sensors:
+      electricity_cost_per_hour:
+        friendly_name: "Trams Horaris Cost Llum"
+        value_template: >-
+          {% if is_state('binary_sensor.workday_sensor', 'off') %}
+            Hora Vall
+          {% else %}
+            {% set current_hour = now().hour %}
+            {% if 0 <= current_hour < 8 %}
+              Hora Vall
+            {% elif 8 <= current_hour < 10 %}
+              Hora Plana
+            {% elif 10 <= current_hour < 14 %}
+              Hora Punta
+            {% elif 14 <= current_hour < 18 %}
+              Hora Plana
+            {% elif 18 <= current_hour < 22 %}
+              Hora Punta
+            {% else %}
+              Hora Plana
+            {% endif %}
+          {% endif %}
+
+binary_sensor:
+  - platform: workday
+    country: ES
 
 google_assistant: !include google_assistant.yaml
 
