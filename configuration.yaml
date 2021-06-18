@@ -169,3 +169,21 @@ shell_command: !include shell_command/shell_commands.yaml
 recorder:
   purge_keep_days: 90
   db_url: !secret recorder_db_url
+
+telegram_bot:
+  platform: polling
+  api_key: !secret telegram_bot_api_key
+  allowed_chat_ids:
+    - !secret telegram_bot_chat_id_eduard
+notify:
+  - name: telegram_text_message_eduard
+    platform: telegram
+    chat_id: !secret telegram_bot_chat_id_eduard
+  - name: telegram_voice_call_eduard
+    platform: rest
+    resource: https://api.callmebot.com/start.php
+    data:
+      source: HA
+      user: !secret telegram_voice_call_username_eduard
+      lang: ca-es-Standard-A
+      rpt: 2
