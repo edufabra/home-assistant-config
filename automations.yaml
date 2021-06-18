@@ -164,7 +164,7 @@
     entity_id: !secret internet_router_entity_id
     to: 'home'
   action:
-    - delay: 
+    - delay:
         minutes: 5
     - service: ifttt.trigger
       data:
@@ -177,7 +177,7 @@
         event: "registre_temperatura_exterior"
         value1: "Temperatura Màxima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
         value2: "{{ states.sensor.yesterday_max_temperature.attributes.temperature }}"
-        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}" 
+        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}"
 
 - id: 'encendre_llum_tv_al_apagar_llum_de_peu_si_tv_encesa'
   alias: Encendre llum TV al apagar la llum de peu si la TV està encesa
@@ -223,7 +223,7 @@
   - data:
       entity_id: switch.menjador_endoll_lampara_de_peu
     service: switch.turn_on
-  mode: single 
+  mode: single
 
 - id: 'timelapse_camera_exterior'
   alias: Agafar captura de la webcam exterior
