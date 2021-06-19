@@ -160,9 +160,8 @@
 - id: 'enviar_registre_temperatures_i_hores_a_google_spreadsheets_via_IFTTT'
   alias: Enviar el registre de temperatures i l'hora a la que s'han produït a un full de Google Spreadsheet via IFTTT
   trigger:
-    platform: state
-    entity_id: !secret internet_router_entity_id
-    to: 'home'
+    platform: time
+    at: '07:00:00'
   action:
     - delay:
         minutes: 5
