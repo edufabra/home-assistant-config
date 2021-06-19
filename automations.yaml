@@ -290,6 +290,12 @@
   trigger:
     platform: time
     at: '00:00:00'
+  condition:
+  alias: "Hi hagi algú a casa"
+  condition:
+    - condition: state
+      entity_id: "group.habitants"
+      state: "home"
   action:
     - service: switch.turn_on
       entity_id: switch.cuina_endoll_sintonitzador_tv
@@ -299,6 +305,12 @@
   trigger:
     platform: time
     at: '07:59:59'
+  condition:
+  alias: "Hi hagi algú a casa"
+  condition:
+    - condition: state
+      entity_id: "group.habitants"
+      state: "home"
   action:
     - service: switch.turn_off
       entity_id: switch.cuina_endoll_sintonitzador_tv
@@ -309,6 +321,9 @@
     platform: time
     at: '22:00:59'
   condition:
+  - condition: state
+    entity_id: "group.habitants"
+    state: "home"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_ventilador
     state: 'on'
@@ -323,6 +338,9 @@
     at: '22:00:59'
   condition:
   - condition: state
+    entity_id: "group.habitants"
+    state: "home"
+  - condition: state
     entity_id: input_boolean.habitacio_arlet_aparell_mosquits
     state: 'on'
   action:
@@ -336,6 +354,9 @@
     at: '07:59:59'
   condition:
   - condition: state
+    entity_id: "group.habitants"
+    state: "home"
+  - condition: state
     entity_id: input_boolean.habitacio_arlet_ventilador
     state: 'on'
   action:
@@ -348,6 +369,9 @@
     platform: time
     at: '07:59:59'
   condition:
+  - condition: state
+    entity_id: "group.habitants"
+    state: "home"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_aparell_mosquits
     state: 'on'
