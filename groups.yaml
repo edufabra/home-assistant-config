@@ -13,4 +13,10 @@ Llums Arbre Nadal:
 TV Cuina:
   entities:
     - switch.cuina_endoll_tv
-    - switch.cuina_endoll_sintonitzador_tv    
+    - switch.cuina_endoll_sintonitzador_tv
+
+Habitants:
+  name: Habitants de la casa
+  entities:
+    - device_tracker.one_a2003
+    - device_tracker.a0001
