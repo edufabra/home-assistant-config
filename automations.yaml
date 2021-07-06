@@ -294,8 +294,8 @@
   alias: "Hi hagi algú a casa"
   condition:
     - condition: state
-      entity_id: "group.habitants"
-      state: "home"
+      entity_id: "sensor.is_someone_at_home"
+      state: "yes"
   action:
     - service: switch.turn_on
       entity_id: switch.cuina_endoll_sintonitzador_tv
@@ -309,8 +309,8 @@
   alias: "Hi hagi algú a casa"
   condition:
     - condition: state
-      entity_id: "group.habitants"
-      state: "home"
+      entity_id: "sensor.is_someone_at_home"
+      state: "yes"
   action:
     - service: switch.turn_off
       entity_id: switch.cuina_endoll_sintonitzador_tv
@@ -322,14 +322,14 @@
     at: '22:00:59'
   condition:
   - condition: state
-    entity_id: "group.habitants"
-    state: "home"
+    entity_id: "sensor.is_someone_at_home"
+    state: "yes"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_ventilador
     state: 'on'
   action:
     - service: switch.turn_on
-      entity_id: switch.endoll_polivalent_1_relay2
+      entity_id: switch.endoll_polivalent_1_relay1
 
 - id: "encendre l'aparell dels mosquits de l'habitació de l'Arlet a les 22h si l'aparell està posat"
   alias: "Encendre l'aparell dels mosquits de l'habitació de l'Arlet a les 22h si l'aparell està posat"
@@ -338,43 +338,43 @@
     at: '22:00:59'
   condition:
   - condition: state
-    entity_id: "group.habitants"
-    state: "home"
+    entity_id: "sensor.is_someone_at_home"
+    state: "yes"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_aparell_mosquits
     state: 'on'
   action:
     - service: switch.turn_on
-      entity_id: switch.endoll_polivalent_1_relay1
+      entity_id: switch.endoll_polivalent_1_relay2
 
 - id: "apagar el ventilador de l'habitació de l'Arlet a les 7h 59m si el ventilador està posat"
   alias: "Apagar el ventilador de l'habitació de l'Arlet a les 7h 59m si el ventilador està posat"
   trigger:
     platform: time
-    at: '07:59:59'
+    at: '07:30:00'
   condition:
   - condition: state
-    entity_id: "group.habitants"
-    state: "home"
+    entity_id: "sensor.is_someone_at_home"
+    state: "yes"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_ventilador
     state: 'on'
   action:
     - service: switch.turn_off
-      entity_id: switch.endoll_polivalent_1_relay2
+      entity_id: switch.endoll_polivalent_1_relay1
 
 - id: "apagar l'aparell dels mosquits de l'habitació de l'Arlet a 7h 59m si l'aparell està posat"
   alias: "apagar l'aparell dels mosquits de l'habitació de l'Arlet a les 7h 59m si l'aparell està posat"
   trigger:
     platform: time
-    at: '07:59:59'
+    at: '07:30:00'
   condition:
   - condition: state
-    entity_id: "group.habitants"
-    state: "home"
+    entity_id: "sensor.is_someone_at_home"
+    state: "yes"
   - condition: state
     entity_id: input_boolean.habitacio_arlet_aparell_mosquits
     state: 'on'
   action:
     - service: switch.turn_off
-      entity_id: switch.endoll_polivalent_1_relay1
+      entity_id: switch.endoll_polivalent_1_relay2

@@ -1,0 +1,2 @@
+    name: "WiFi SSIDS de Casa"
+    initial: !secret home_wifi_ssids

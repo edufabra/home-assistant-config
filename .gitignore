@@ -19,6 +19,8 @@
 !esphome/*.yaml
 !input_boolean/
 !input_boolean/*.yaml
+!input_text/
+!input_text/*.yaml
 
 
 # Ignore folders.

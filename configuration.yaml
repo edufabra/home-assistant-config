@@ -179,6 +179,33 @@ sensor:
             {% endif %}
           {% endif %}
 
+  - platform: template
+    sensors:
+      eduard_mobile_phone_wifi_ssid:
+        friendly_name: "Xarxa Wifi a la que està connectat el mòbil de l'Eduard"
+        value_template: >-
+          {% if states('sensor.one_a2003_wifi_connection') in states('input_text.home_wifi_ssids') %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+      inma_mobile_phone_wifi_ssid:
+        friendly_name: "Xarxa Wifi a la que està connectat el mòbil de la Inma"
+        value_template: >-
+          {% if states('sensor.a0001_conexion_wifi') in states('input_text.home_wifi_ssids') %}
+            home
+          {% else %}
+            not_home
+          {% endif %}
+      is_someone_at_home:
+        friendly_name: "Hi ha algú a casa?"
+        value_template: >-
+          {% if states('sensor.eduard_mobile_phone_wifi_ssid') == 'home' or states('sensor.inma_mobile_phone_wifi_ssid') == 'home' %}
+            yes
+          {% else %}
+            no
+          {% endif %}
+
 binary_sensor:
   - platform: workday
     country: ES
@@ -210,3 +237,4 @@ notify:
       rpt: 2
 
 input_boolean: !include_dir_named input_boolean/
+input_text: !include_dir_named input_text/
