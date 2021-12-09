@@ -282,8 +282,6 @@
     platform: time
     at: '00:00:00'
   condition:
-  alias: "Hi hagi algú a casa"
-  condition:
     - condition: state
       entity_id: "sensor.is_someone_at_home"
       state: "yes"
@@ -296,12 +294,6 @@
   trigger:
     platform: time
     at: '07:59:59'
-  condition:
-  alias: "Hi hagi algú a casa"
-  condition:
-    - condition: state
-      entity_id: "sensor.is_someone_at_home"
-      state: "yes"
   action:
     - service: switch.turn_off
       entity_id: switch.cuina_endoll_sintonitzador_tv
@@ -345,9 +337,6 @@
     at: '07:30:00'
   condition:
   - condition: state
-    entity_id: "sensor.is_someone_at_home"
-    state: "yes"
-  - condition: state
     entity_id: input_boolean.habitacio_arlet_ventilador
     state: 'on'
   action:
@@ -361,11 +350,7 @@
     at: '07:30:00'
   condition:
   - condition: state
-    entity_id: "sensor.is_someone_at_home"
-    state: "yes"
-  - condition: state
     entity_id: input_boolean.habitacio_arlet_aparell_mosquits
     state: 'on'
   action:
     - service: switch.turn_off
-      entity_id: switch.endoll_polivalent_1_relay2
