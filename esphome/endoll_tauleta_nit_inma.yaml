@@ -1,6 +1,6 @@
 substitutions:
   device: shp7_endoll_tauleta_nit_inma
-  name: shp7_endoll_tauleta_nit_inma
+  name: shp7-endoll-tauleta-nit-inma
   static_ip: 192.168.0.37
   gateway: 192.168.0.1
   subnet: 255.255.255.0
