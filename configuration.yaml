@@ -6,7 +6,7 @@ default_config:
 tts:
   - platform: google_translate
     language: 'es'
-    base_url: !secret homeassistant_url
+    base_url: !secret homeassistant_external_url
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -18,8 +18,8 @@ homeassistant:
   longitude: !secret homeassistant_longitude
   elevation: !secret homeassistant_elevation
   unit_system: metric
-  external_url: !secret homeassistant_url
-  internal_url: !secret homeassistant_url
+  external_url: !secret homeassistant_external_url
+  internal_url: !secret homeassistant_internal_url
 
 http:
   ssl_certificate: /ssl/fullchain.pem
