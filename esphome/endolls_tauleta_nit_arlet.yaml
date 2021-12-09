@@ -1,5 +1,5 @@
 substitutions:
-  device_name: endolls_regleta_arlet
+  device_name: endolls-regleta-arlet
   plug_name: p1_01
 
 esphome:
@@ -15,6 +15,9 @@ wifi:
     static_ip: 192.168.0.43
     gateway: 192.168.0.1
     subnet: 255.255.255.0
+    dns1: 1.1.1.1
+    dns2: 1.0.0.1
+  fast_connect: true
   #use_address: 192.168.6.6
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
@@ -115,7 +118,7 @@ binary_sensor:
     internal: true
     pin:
       number: GPIO16
-      mode: INPUT_PULLUP
+      mode: INPUT
       inverted: true
     #on_state:
     on_press:
