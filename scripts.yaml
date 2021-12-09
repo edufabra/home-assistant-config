@@ -1,12 +1,12 @@
 go_to_bed:
   alias: "Anem a dormir"
-  icon: "mdi:bed"
+  icon: "mdi:sleep"
   description: "Apaga la TV, les llums, encén la llum de la habitació de matrimoni i al cap d'una estona apaga la connexió a Internet"
   # If called again while still running (probably in delay step), start over.
   mode: restart
   sequence:
     - alias: "Apaga llums"
-      service: switch.turn_off
+      service: homeassistant.turn_off
       entity_id:
         - switch.despatx_regleta_1_endoll_pc
         - switch.despatx_regleta_1_endoll_llum_lloc_1
@@ -19,6 +19,8 @@ go_to_bed:
         - switch.habitacio_arlet_endoll_lampareta
         - switch.habitacio_arlet_endoll_2
         - switch.habitacio_arlet_endoll_3
+        - group.llums_nadal_menjador
+        - group.llums_despatx
     - alias: "Encén Llum Tauleta Eduard de l'habitació de matrimoni"
       service: switch.turn_on
       target:
@@ -43,9 +45,4 @@ go_to_bed:
                   service: switch.turn_on
                   target:
                     entity_id: switch.habitacio_matrimoni_eduard_endoll_lliure
-    #- delay:
-    #    minutes: 10
-    #- alias: "Apaga endoll router connexió a Internet"
-    #  service: switch.turn_off
-    #  target:
-    #    entity_id: switch.despatx_regleta_1_endoll_router_wifi
+                    
