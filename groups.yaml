@@ -14,3 +14,13 @@ TV Cuina:
   entities:
     - switch.cuina_endoll_tv
     - switch.cuina_endoll_sintonitzador_tv
+
+Llums Despatx:
+  entities:
+    - switch.despatx_regleta_1_endoll_llum_lloc_1
+    - switch.despatx_endoll_sota_taula_llum
+
+Llums Habitació Matrimoni:
+  entities:
+    - switch.habitacio_matrimoni_eduard_endoll_tauleta_nit
+    - switch.habitacio_matrimoni_inma_endoll_tauleta_nit
