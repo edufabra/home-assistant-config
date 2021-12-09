@@ -276,15 +276,6 @@
     data:
       entity_id: switch.habitacio_matrimoni_inma_endoll_esterilla
 
-- id: 'encendre router internet a les 7:00 del mati'
-  alias: "Encendre l'endoll del router a les 7:00 del matí"
-  trigger:
-    platform: time
-    at: '07:00:00'
-  action:
-    - service: switch.turn_on
-      entity_id: switch.despatx_regleta_1_endoll_router_wifi
-
 - id: 'encendre endoll cuina per a carregar mòbils a les 0:00h'
   alias: "Encendre l'endoll de la cuina per carregar els mòbils a partir de les 0:00"
   trigger:
