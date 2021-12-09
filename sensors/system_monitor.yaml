@@ -1,0 +1,22 @@
+############################
+#        Raspberry         #
+############################
+
+platform: systemmonitor
+resources:
+- type: disk_use_percent
+  arg: /
+- type: disk_use
+- type: disk_free
+- type: memory_use_percent
+- type: processor_use
+- type: last_boot
+- type: ipv4_address
+  arg: eth0
+- type: network_in
+  arg: eth0
+- type: network_out
+  arg: eth0
+- type: swap_use_percent
+- type: swap_use
+- type: swap_free

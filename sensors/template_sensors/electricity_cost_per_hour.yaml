@@ -1,0 +1,23 @@
+platform: template
+sensors:
+  electricity_cost_per_hour:
+    friendly_name: "Trams Horaris Cost Llum"
+    value_template: >-
+      {% if is_state('binary_sensor.workday_sensor', 'off') %}
+        Hora Vall
+      {% else %}
+        {% set current_hour = now().hour %}
+        {% if 0 <= current_hour < 8 %}
+          Hora Vall
+        {% elif 8 <= current_hour < 10 %}
+          Hora Plana
+        {% elif 10 <= current_hour < 14 %}
+          Hora Punta
+        {% elif 14 <= current_hour < 18 %}
+          Hora Plana
+        {% elif 18 <= current_hour < 22 %}
+          Hora Punta
+        {% else %}
+          Hora Plana
+        {% endif %}
+      {% endif %}

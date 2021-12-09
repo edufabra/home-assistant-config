@@ -1,0 +1,12 @@
+platform: sql
+db_url: !secret recorder_db_url
+scan_interval: 10800
+queries:
+  - name: yesterday_max_temperature
+    query: 'SELECT state AS temperature, DATE_FORMAT(CONVERT_TZ(last_updated, "UTC", "Europe/Andorra"), "%H:%i") AS time FROM states WHERE entity_id = "sensor.ble_temperature_terrassa" and DATE(last_updated) = SUBDATE(CURDATE(), 1) and state NOT IN ("unknown","unavailable") GROUP BY state ORDER BY CAST(state AS float) DESC LIMIT 1;'
+    column: 'temperature'
+    unit_of_measurement: 'ºC'
+  - name: yesterday_min_temperature
+    query: 'SELECT state AS temperature, DATE_FORMAT(CONVERT_TZ(last_updated, "UTC", "Europe/Andorra"), "%H:%i") AS time FROM states WHERE entity_id = "sensor.ble_temperature_terrassa" and DATE(last_updated) = SUBDATE(CURDATE(), 1) and state NOT IN ("unknown","unavailable") GROUP BY state ORDER BY CAST(state AS float) ASC LIMIT 1;'
+    column: 'temperature'
+    unit_of_measurement: 'ºC'

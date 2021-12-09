@@ -21,6 +21,14 @@
 !input_boolean/*.yaml
 !input_text/
 !input_text/*.yaml
+!sensors/
+!sensors/*.yaml
+!sensors/sql_sensors
+!sensors/sql_sensors/*.yaml
+!sensors/statistics
+!sensors/statistics/*.yaml
+!sensors/template_sensors
+!sensors/template_sensors/*.yaml
 
 
 # Ignore folders.

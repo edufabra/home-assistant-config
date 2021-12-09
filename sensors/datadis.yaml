@@ -1,0 +1,4 @@
+platform: edata
+username: !secret datadis_username
+password: !secret datadis_password
+cups: !secret cups_number

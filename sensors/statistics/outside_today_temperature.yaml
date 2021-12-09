@@ -1,0 +1,7 @@
+platform: statistics
+name: outside_temp
+entity_id: sensor.ble_temperature_terrassa
+sampling_size: 1440
+precision: 1
+max_age:
+  hours: 24
