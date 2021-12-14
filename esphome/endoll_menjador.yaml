@@ -1,5 +1,5 @@
 substitutions:
-  device: shp7_endoll_menjador
+  device: shp7-endoll-menjador
   name: shp7_endoll_menjador
   static_ip: 192.168.0.38
   gateway: 192.168.0.1

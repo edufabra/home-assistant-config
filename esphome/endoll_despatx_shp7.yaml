@@ -1,5 +1,5 @@
 substitutions:
-  device: shp7_endoll_despatx
+  device: shp7-endoll-despatx
   name: shp7_endoll_despatx_sota_taula
   static_ip: 192.168.0.44
   gateway: 192.168.0.1

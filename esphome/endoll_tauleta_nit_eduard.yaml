@@ -1,5 +1,5 @@
 substitutions:
-  device: shp7_endoll_tauleta_nit_edu
+  device: shp7-endoll-tauleta-nit-edu
   name: shp7_endoll_tauleta_nit_edu
   static_ip: 192.168.0.32
   gateway: 192.168.0.1

@@ -1,5 +1,5 @@
 substitutions:
-  device: shp7_endoll_polivalent_1
+  device: shp7-endoll-polivalent-1
   name: shp7_endoll_polivalent_1
   static_ip: 192.168.0.45
   gateway: 192.168.0.1

@@ -1,5 +1,5 @@
 substitutions:
-  device: shp7_endoll_tv_cuina
+  device: shp7-endoll-tv-cuina
   name: shp7_endoll_tv_cuina
   static_ip: 192.168.0.34
   gateway: 192.168.0.1
