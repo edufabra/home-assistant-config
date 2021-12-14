@@ -45,4 +45,13 @@ go_to_bed:
                   service: switch.turn_on
                   target:
                     entity_id: switch.habitacio_matrimoni_eduard_endoll_lliure
-                    
+    - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_boolean.terrassa_llums_nadal
+                  state: "on"
+              sequence:
+                - alias: "Apaga llums Nadal terrassa"
+                  service: switch.turn_off
+                  target:
+                    entity_id: switch.endoll_polivalent_1_relay1
