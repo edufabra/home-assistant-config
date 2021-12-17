@@ -29,6 +29,8 @@
 !sensors/statistics/*.yaml
 !sensors/template_sensors
 !sensors/template_sensors/*.yaml
+!integrations/
+!integrations/*.yaml
 
 
 # Ignore folders.

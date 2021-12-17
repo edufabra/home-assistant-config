@@ -20,6 +20,7 @@ homeassistant:
   unit_system: metric
   external_url: !secret homeassistant_external_url
   internal_url: !secret homeassistant_internal_url
+  packages: !include_dir_named integrations
 
 http:
   ssl_certificate: /ssl/fullchain.pem
