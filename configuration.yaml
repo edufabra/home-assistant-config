@@ -22,8 +22,6 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
-wake_on_lan:
-
 webostv:
   host: !secret lg_tv_menjador_ip
   name: TV LG Menjador
