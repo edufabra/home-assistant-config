@@ -377,14 +377,14 @@
   - platform: state
     entity_id: binary_sensor.0x158d0006c399ab_contact
     to: 'on'
-  condition:
-  - condition: state
-    entity_id: "sensor.is_someone_at_home"
-    state: "no"
   action:
-  - service: notify.telegram_voice_call_eduard
-    data:
-      message: "S'ha obert la porta de la entrada de casa i no hi ha ningú a casa"
+    - delay: 00:01:00
+    - condition: state
+      entity_id: "sensor.is_someone_at_home"
+      state: "no"
+    - service: notify.telegram_voice_call_eduard
+      data:
+        message: "S'ha obert la porta de la entrada de casa i no hi ha ningú a casa"
 
 - id: "enviar un missatge a Telegram si plou"
   alias: "Enviar un missatge a Telegram si plou"
