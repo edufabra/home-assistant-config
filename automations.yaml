@@ -178,14 +178,14 @@
     platform: time
     at: '07:00:00'
   action:
-    - delay:
-        minutes: 5
     - service: ifttt.trigger
       data:
         event: "registre_temperatura_exterior"
         value1: "Temperatura Mínima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
         value2: "{{ states.sensor.yesterday_min_temperature.attributes.temperature }}"
         value3: "{{ states.sensor.yesterday_min_temperature.attributes.time }}"
+    - delay:
+        minutes: 1    
     - service: ifttt.trigger
       data:
         event: "registre_temperatura_exterior"
