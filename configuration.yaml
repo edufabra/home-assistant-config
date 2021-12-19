@@ -2,12 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Text to speech
-tts:
-  - platform: google_translate
-    language: 'es'
-    base_url: !secret homeassistant_external_url
-
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml

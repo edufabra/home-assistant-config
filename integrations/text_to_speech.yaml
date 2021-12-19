@@ -1,0 +1,4 @@
+tts:
+  - platform: google_translate
+    language: 'es'
+    base_url: !secret homeassistant_external_url
