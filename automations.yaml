@@ -255,7 +255,7 @@
       data:
         filename: >-
                   /config/www/images/webcam/webcam_exterior_{{ now().strftime("%Y%m%d-%H%M") }}.jpg
-      entity_id: camera.camara_exterior_mainstream
+      entity_id: camera.camara_exterior_mainstreamprofile
   mode: single
 
 - id: 'generar_timelapse_camera_exterior'
