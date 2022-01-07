@@ -21,6 +21,8 @@
 !input_boolean/*.yaml
 !input_text/
 !input_text/*.yaml
+!input_select/
+!input_select/*.yaml
 !sensors/
 !sensors/*.yaml
 !sensors/sql_sensors

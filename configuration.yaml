@@ -19,16 +19,6 @@ homeassistant:
 
 media_player:
 
-input_select:
-  sala_maquines_estat_rentadora:
-    name: Estat rentadora
-    options:
-      - Apagada
-      - Stand-by
-      - Rentant
-    initial: Apagada
-    icon: mdi:washing-machine
-
 browser_mod:
 
 ifttt:
@@ -66,4 +56,5 @@ notify:
 
 input_boolean: !include_dir_named input_boolean/
 input_text: !include_dir_named input_text/
+input_select: !include_dir_named input_select/
 sensor: !include_dir_list sensors/
