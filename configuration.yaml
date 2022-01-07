@@ -17,12 +17,6 @@ homeassistant:
   packages: !include_dir_named integrations
   customize: !include customize.yaml
 
-http:
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
-  ip_ban_enabled: true
-  login_attempts_threshold: 5
-
 media_player:
 
 input_select:
