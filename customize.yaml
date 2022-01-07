@@ -1,0 +1,11 @@
+sensor.edata_vn0f:
+  friendly_name: Consum Electricitat
+
+#sensor.edata:vn0f_p1_consumption:
+#  friendly_name: 'Consum Electricitat Hora Punta'
+
+#sensor.edata:vn0f_p2_consumption:
+#  friendly_name: 'Consum Electricitat Hora Plana'
+
+#sensor.edata:vn0f_p3_consumption:
+#  friendly_name: 'Consum Electricitat Hora Vall'

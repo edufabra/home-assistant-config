@@ -15,6 +15,7 @@ homeassistant:
   external_url: !secret homeassistant_external_url
   internal_url: !secret homeassistant_internal_url
   packages: !include_dir_named integrations
+  customize: !include customize.yaml
 
 http:
   ssl_certificate: /ssl/fullchain.pem
