@@ -21,9 +21,6 @@ media_player:
 
 browser_mod:
 
-ifttt:
-  key: !secret ifttt_key
-
 binary_sensor:
   - platform: workday
     country: ES
