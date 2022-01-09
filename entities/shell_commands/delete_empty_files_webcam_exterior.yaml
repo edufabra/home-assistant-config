@@ -1,0 +1,1 @@
+delete_empty_files_webcam_exterior: "find /config/www/images/webcam/ -type f -size 0 -delete"

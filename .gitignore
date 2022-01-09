@@ -40,6 +40,8 @@
 !entities/binary_sensors/*.yaml
 !entities/media_players/
 !entities/media_players/*.yaml
+!entities/shell_commands/
+!entities/shell_commands/*.yaml
 
 
 # Ignore folders.

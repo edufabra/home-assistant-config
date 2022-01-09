@@ -1,0 +1,1 @@
+delete_files_webcam_exterior: "rm -f /config/www/images/webcam/webcam_exterior*.jpg"
