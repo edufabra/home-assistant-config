@@ -1,0 +1,3 @@
+name: telegram_text_message_eduard
+platform: telegram
+chat_id: !secret telegram_bot_chat_id_eduard

@@ -33,6 +33,9 @@
 !sensors/template_sensors/*.yaml
 !integrations/
 !integrations/*.yaml
+!entities/
+!entities/notifiers/
+!entities/notifiers/*.yaml
 
 
 # Ignore folders.

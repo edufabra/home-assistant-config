@@ -1,0 +1,8 @@
+name: telegram_voice_call_eduard
+platform: rest
+resource: https://api.callmebot.com/start.php
+data:
+  source: HA
+  user: !secret telegram_voice_call_username_eduard
+  lang: ca-es-Standard-A
+  rpt: 2
