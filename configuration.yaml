@@ -17,8 +17,6 @@ homeassistant:
   packages: !include_dir_named integrations
   customize: !include customize.yaml
 
-media_player:
-
 browser_mod:
 
 shell_command: !include shell_command/shell_commands.yaml
