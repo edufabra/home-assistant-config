@@ -27,10 +27,6 @@ binary_sensor:
 
 shell_command: !include shell_command/shell_commands.yaml
 
-recorder:
-  purge_keep_days: 10
-  db_url: !secret recorder_db_url
-
 telegram_bot:
   platform: polling
   api_key: !secret telegram_bot_api_key
