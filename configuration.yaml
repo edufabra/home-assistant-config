@@ -21,10 +21,6 @@ media_player:
 
 browser_mod:
 
-binary_sensor:
-  - platform: workday
-    country: ES
-
 shell_command: !include shell_command/shell_commands.yaml
 
 input_boolean: !include_dir_named input_boolean/

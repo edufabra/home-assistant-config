@@ -36,6 +36,8 @@
 !entities/
 !entities/notifiers/
 !entities/notifiers/*.yaml
+!entities/binary_sensors/
+!entities/binary_sensors/*.yaml
 
 
 # Ignore folders.
