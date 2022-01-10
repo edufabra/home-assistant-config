@@ -17,8 +17,6 @@
 !esphome/common/shp7/
 !esphome/common/shp7/*.yaml
 !esphome/*.yaml
-!input_boolean/
-!input_boolean/*.yaml
 !input_text/
 !input_text/*.yaml
 !input_select/
@@ -44,6 +42,8 @@
 !entities/shell_commands/*.yaml
 !entities/groups/
 !entities/groups/*.yaml
+!entities/input_booleans/
+!entities/input_booleans/*.yaml
 
 
 # Ignore folders.

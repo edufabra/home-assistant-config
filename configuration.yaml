@@ -16,7 +16,7 @@ homeassistant:
   packages: !include_dir_named integrations
   customize: !include customize.yaml
 
-input_boolean: !include_dir_named input_boolean/
+
 input_text: !include_dir_named input_text/
 input_select: !include_dir_named input_select/
 sensor: !include_dir_list sensors/
