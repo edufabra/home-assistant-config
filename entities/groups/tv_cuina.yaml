@@ -1,0 +1,5 @@
+name: TV Cuina
+icon: mdi:television-classic
+entities:
+    - switch.cuina_endoll_tv
+    - switch.cuina_endoll_sintonitzador_tv

@@ -1,0 +1,5 @@
+name: Llums Arbre Nadal
+icon: mdi:pine-tree
+entities:
+    - switch.llums_arbre_nadal_tira_1
+    - switch.llums_arbre_nadal_tira_2

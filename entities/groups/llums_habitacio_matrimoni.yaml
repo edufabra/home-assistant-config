@@ -1,0 +1,5 @@
+name: Llums Habitació Matrimoni
+icon: mdi:lightbulb-group
+entities:
+    - switch.habitacio_matrimoni_eduard_endoll_tauleta_nit
+    - switch.habitacio_matrimoni_inma_endoll_tauleta_nit

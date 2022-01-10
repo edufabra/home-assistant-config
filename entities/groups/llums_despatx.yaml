@@ -1,0 +1,5 @@
+name: Llums Despatx
+icon: mdi:lightbulb-group
+entities:
+    - switch.despatx_regleta_1_endoll_llum_lloc_1
+    - switch.despatx_endoll_sota_taula_llum

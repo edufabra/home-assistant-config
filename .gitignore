@@ -42,6 +42,8 @@
 !entities/media_players/*.yaml
 !entities/shell_commands/
 !entities/shell_commands/*.yaml
+!entities/groups/
+!entities/groups/*.yaml
 
 
 # Ignore folders.
