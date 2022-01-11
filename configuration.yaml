@@ -15,5 +15,3 @@ homeassistant:
   internal_url: !secret homeassistant_internal_url
   packages: !include_dir_named integrations
   customize: !include customize.yaml
-
-sensor: !include_dir_list sensors/

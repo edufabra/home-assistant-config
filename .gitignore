@@ -5,8 +5,7 @@
 !*.yaml
 !.gitignore
 !*.md
-!shell_command/
-!shell_command/*.yaml
+
 !esphome/
 !esphome/common/
 !esphome/common/*.yaml
@@ -17,16 +16,10 @@
 !esphome/common/shp7/
 !esphome/common/shp7/*.yaml
 !esphome/*.yaml
-!sensors/
-!sensors/*.yaml
-!sensors/sql_sensors
-!sensors/sql_sensors/*.yaml
-!sensors/statistics
-!sensors/statistics/*.yaml
-!sensors/template_sensors
-!sensors/template_sensors/*.yaml
+
 !integrations/
 !integrations/*.yaml
+
 !entities/
 !entities/notifiers/
 !entities/notifiers/*.yaml
@@ -44,7 +37,14 @@
 !entities/input_texts/*.yaml
 !entities/input_selects/
 !entities/input_selects/*.yaml
-
+!entities/sensors/
+!entities/sensors/*.yaml
+!entities/sensors/sql_sensors
+!entities/sensors/sql_sensors/*.yaml
+!entities/sensors/statistics
+!entities/sensors/statistics/*.yaml
+!entities/sensors/template_sensors
+!entities/sensors/template_sensors/*.yaml
 
 # Ignore folders.
 .storage
