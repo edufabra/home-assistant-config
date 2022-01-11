@@ -17,8 +17,6 @@
 !esphome/common/shp7/
 !esphome/common/shp7/*.yaml
 !esphome/*.yaml
-!input_select/
-!input_select/*.yaml
 !sensors/
 !sensors/*.yaml
 !sensors/sql_sensors
@@ -44,6 +42,8 @@
 !entities/input_booleans/*.yaml
 !entities/input_texts/
 !entities/input_texts/*.yaml
+!entities/input_selects/
+!entities/input_selects/*.yaml
 
 
 # Ignore folders.
