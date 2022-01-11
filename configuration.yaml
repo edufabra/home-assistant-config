@@ -17,6 +17,5 @@ homeassistant:
   customize: !include customize.yaml
 
 
-input_text: !include_dir_named input_text/
 input_select: !include_dir_named input_select/
 sensor: !include_dir_list sensors/
