@@ -45,6 +45,8 @@
 !entities/sensors/statistics/*.yaml
 !entities/sensors/template_sensors
 !entities/sensors/template_sensors/*.yaml
+!entities/scripts/
+!entities/scripts/*.yaml
 
 # Ignore folders.
 .storage
