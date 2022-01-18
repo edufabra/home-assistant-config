@@ -1,0 +1,8 @@
+- id: 'apagar endoll cuina per a carregar mòbils a les 8:00h'
+  alias: "Apagar l'endoll de la cuina per carregar els mòbils a partir de les 8:00"
+  trigger:
+    platform: time
+    at: '07:59:59'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.cuina_endoll_sintonitzador_tv

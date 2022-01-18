@@ -1,0 +1,20 @@
+- id: 'enviar_registre_temperatures_i_hores_a_google_spreadsheets_via_IFTTT'
+  alias: Enviar el registre de temperatures i l'hora a la que s'han produït a un full de Google Spreadsheet via IFTTT
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+    - service: ifttt.trigger
+      data:
+        event: "registre_temperatura_exterior"
+        value1: "Temperatura Mínima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
+        value2: "{{ states.sensor.yesterday_min_temperature.attributes.temperature }}"
+        value3: "{{ states.sensor.yesterday_min_temperature.attributes.time }}"
+    - delay:
+        minutes: 1    
+    - service: ifttt.trigger
+      data:
+        event: "registre_temperatura_exterior"
+        value1: "Temperatura Màxima {{ (as_timestamp(now()) - (24*3600)) | timestamp_custom('%d/%m/%Y', True) }}"
+        value2: "{{ states.sensor.yesterday_max_temperature.attributes.temperature }}"
+        value3: "{{ states.sensor.yesterday_max_temperature.attributes.time }}"

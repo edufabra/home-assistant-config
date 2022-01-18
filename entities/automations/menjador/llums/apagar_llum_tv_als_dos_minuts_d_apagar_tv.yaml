@@ -1,0 +1,23 @@
+- id: '1601402521291'
+  alias: Apaga llum TV si ja fa 2 minuts que s’ha apagat la TV
+  description: Apaga la llum TV si ja fa 2 minuts que s'ha apagat la TV
+  trigger:
+  - platform: state
+    entity_id: media_player.menjador_tv
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 2
+  condition:
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'on'
+  - condition: state
+    entity_id: media_player.menjador_tv
+    state: 'off'
+  action:
+  - type: turn_off
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single

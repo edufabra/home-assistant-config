@@ -1,0 +1,14 @@
+- id: 'apaga_endoll_tv_quan_tv_apagada'
+  alias: Apaga Endoll TV al apagar la TV
+  description: Apaga Endoll al apagar la TV
+  trigger:
+  - platform: state
+    entity_id: media_player.menjador_tv
+    from: 'on'
+    to: 'off'
+  action:
+  - type: turn_off
+    device_id: 5c127e650dfb11eb81db657c437003bb
+    entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
+    domain: switch
+  mode: single

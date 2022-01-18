@@ -1,0 +1,16 @@
+- id: 'generar_timelapse_camera_exterior'
+  alias: 'Generate timelapse '
+  description: 'Generar timelapse amb les imatges del dia de la camera exterior'
+  trigger:
+    - platform: time
+      at: '01:30:00'
+  condition: []
+  action:
+    - service: shell_command.delete_empty_files_webcam_exterior
+      data: {}
+    - service: shell_command.timelapse_webcam_exterior
+      data: {}
+    - delay: '00:30:00'
+    - service: shell_command.delete_files_webcam_exterior
+      data: {}
+  mode: single

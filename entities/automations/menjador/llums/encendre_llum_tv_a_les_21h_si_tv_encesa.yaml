@@ -1,0 +1,28 @@
+- id: '1601400826100'
+  alias: Encendre llum TV a les 21:00 si la TV està encesa
+  description: Encendre llum TV a les 21:00 si la TV està encesa i la làmpara de peu no està encesa
+  trigger:
+  - platform: time_pattern
+    hours: '21'
+    minutes: '00'
+  condition:
+  - condition: device
+    device_id: de01dbffc14946daa8d83857ae5d8229
+    domain: media_player
+    entity_id: media_player.menjador_tv
+    type: is_on
+  - condition: state
+    entity_id: switch.menjador_endoll_lampara_de_peu
+    state: 'off'
+  - condition: state
+    entity_id: light.menjador_llum_tv
+    state: 'off'
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - type: turn_on
+    device_id: 9b7ecb30fd1a11ea901e1148b48278d9
+    entity_id: light.menjador_llum_tv
+    domain: light
+  mode: single

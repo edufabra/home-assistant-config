@@ -1,0 +1,12 @@
+- id: "apagar el ventilador de l'habitació de l'Arlet a les 7h 59m si el ventilador està posat"
+  alias: "Apagar el ventilador de l'habitació de l'Arlet a les 7h 59m si el ventilador està posat"
+  trigger:
+    platform: time
+    at: '07:30:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.habitacio_arlet_ventilador
+    state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.endoll_polivalent_1_relay1

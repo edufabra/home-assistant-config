@@ -1,0 +1,14 @@
+- id: 'apaga_endoll_rentadora_quan_rentadora_acaba'
+  alias: Apaga Endoll rentadora quan la rentadora acaba el programa
+  description: Apaga Endoll rentadora quan la rentadora acaba el programa
+  trigger:
+  - platform: state
+    entity_id: sensor.rentadora_operation_state
+    to: 'Finished'
+    for:
+      seconds: 30
+  action:
+  - data:
+      entity_id: switch.sala_maquines_endoll_rentadora
+    service: switch.turn_off
+  mode: single

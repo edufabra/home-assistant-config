@@ -1,0 +1,15 @@
+- id: 'encendre_tv_al_encendre_endoll_tv'
+  alias: Encendre TV al encendre endoll TV
+  description: Encendre TV al encendre endoll TV
+  trigger:
+  - platform: state
+    entity_id: switch.regleta_menjador_darrera_tv_mss425f_switch_2
+    from: 'off'
+    to: 'on'
+  action:
+  - delay:
+      seconds: 20
+  - service: wake_on_lan.send_magic_packet
+    data:
+      "mac": !secret lg_tv_menjador_mac
+  mode: single

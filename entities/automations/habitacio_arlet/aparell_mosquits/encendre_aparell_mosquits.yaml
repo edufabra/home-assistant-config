@@ -1,0 +1,15 @@
+- id: "encendre l'aparell dels mosquits de l'habitació de l'Arlet a les 22h si l'aparell està posat"
+  alias: "Encendre l'aparell dels mosquits de l'habitació de l'Arlet a les 22h si l'aparell està posat"
+  trigger:
+    platform: time
+    at: '22:00:59'
+  condition:
+  - condition: state
+    entity_id: "sensor.is_someone_at_home"
+    state: "yes"
+  - condition: state
+    entity_id: input_boolean.habitacio_arlet_aparell_mosquits
+    state: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.endoll_polivalent_1_relay2

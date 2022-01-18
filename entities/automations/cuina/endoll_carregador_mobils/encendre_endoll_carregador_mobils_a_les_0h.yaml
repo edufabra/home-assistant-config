@@ -1,0 +1,12 @@
+- id: 'encendre endoll cuina per a carregar mòbils a les 0:00h'
+  alias: "Encendre l'endoll de la cuina per carregar els mòbils a partir de les 0:00"
+  trigger:
+    platform: time
+    at: '00:00:00'
+  condition:
+    - condition: state
+      entity_id: "sensor.is_someone_at_home"
+      state: "yes"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.cuina_endoll_sintonitzador_tv

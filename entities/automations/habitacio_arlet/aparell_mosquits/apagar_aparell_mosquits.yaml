@@ -1,0 +1,12 @@
+- id: "apagar l'aparell dels mosquits de l'habitació de l'Arlet a 7h 59m si l'aparell està posat"
+  alias: "apagar l'aparell dels mosquits de l'habitació de l'Arlet a les 7h 59m si l'aparell està posat"
+  trigger:
+    platform: time
+    at: '07:30:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.habitacio_arlet_aparell_mosquits
+    state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.endoll_polivalent_1_relay2

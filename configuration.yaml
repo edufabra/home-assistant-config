@@ -2,7 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-automation: !include automations.yaml
 scene: !include scenes.yaml
 
 homeassistant:

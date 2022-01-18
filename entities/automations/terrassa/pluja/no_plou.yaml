@@ -1,0 +1,10 @@
+- id: "enviar un missatge a Telegram si ja no plou"
+  alias: "Enviar un missatge a Telegram si ja no plou"
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.0x158d000651839a_moisture
+    to: 'off'
+  action:
+  - service: notify.telegram_text_message_eduard
+    data:
+      message: "Sembla que ha parat de ploure a Vilafranca! 🌂"

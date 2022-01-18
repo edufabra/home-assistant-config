@@ -1,0 +1,21 @@
+- id: 'encendre_llum_de_peu_al_apagar_llum_tv_si_tv_encesa'
+  alias: Encendre llum de peu al apagar la llum TV si la TV està encesa
+  trigger:
+    platform: state
+    entity_id: light.menjador_llum_tv
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  - condition: state
+    entity_id: switch.menjador_endoll_lampara_de_peu
+    state: 'off'
+  - condition: state
+    entity_id: media_player.menjador_tv
+    state: 'on'
+  action:
+  - data:
+      entity_id: switch.menjador_endoll_lampara_de_peu
+    service: switch.turn_on
+  mode: single
