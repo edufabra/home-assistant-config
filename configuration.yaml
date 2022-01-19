@@ -2,8 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-scene: !include scenes.yaml
-
 homeassistant:
   latitude: !secret homeassistant_latitude
   longitude: !secret homeassistant_longitude
