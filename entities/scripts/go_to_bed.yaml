@@ -15,6 +15,10 @@ sequence:
       - switch.regleta_menjador_darrera_tv_mss425f_switch_1
       - switch.despatx_endoll_sota_taula_monitor
       - switch.despatx_endoll_sota_taula_llum
+      - switch.regleta_despatx_sota_taula_mss425f_switch_1
+      - switch.regleta_despatx_sota_taula_mss425f_switch_2
+      - switch.regleta_despatx_sota_taula_mss425f_switch_3
+      - switch.regleta_despatx_sota_taula_mss425f_switch_4
       - switch.habitacio_arlet_endoll_lampareta
       - switch.habitacio_arlet_endoll_2
       - switch.habitacio_arlet_endoll_3
