@@ -1,7 +1,0 @@
-  name: Estat rentadora
-  options:
-  - Apagada
-  - Stand-by
-  - Rentant
-  initial: Apagada
-  icon: mdi:washing-machine
