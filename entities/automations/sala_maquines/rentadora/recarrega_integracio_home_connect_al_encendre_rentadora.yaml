@@ -1,0 +1,17 @@
+- id: 'Recarrega_integracio_home_connect_al_encendre_rentadora'
+  alias: Recarrega integració Home Connect al encendre rentadora
+  description: Recarrega integració Home Connect al encendre rentadora
+  mode: single
+  trigger:
+    - platform: state
+      entity_id: switch.sala_maquines_endoll_rentadora
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+  action:
+    - service: homeassistant.reload_config_entry
+      data: {}
+      target:
+        device_id: cabee4cc19ff11eb8b2d5b1c1c6dc85e
