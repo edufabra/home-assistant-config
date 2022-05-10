@@ -3,7 +3,7 @@ sensors:
   eduard_mobile_phone_wifi_ssid:
     friendly_name: "Xarxa Wifi a la que està connectat el mòbil de l'Eduard"
     value_template: >-
-      {% if states('sensor.one_a2003_wifi_connection') in states('input_text.home_wifi_ssids') %}
+      {% if states('sensor.poco_f3_wifi_connection') in states('input_text.home_wifi_ssids') %}
         home
       {% else %}
         not_home
@@ -22,7 +22,7 @@ sensors:
       {% if states('sensor.eduard_mobile_phone_wifi_ssid') == 'home' or states('sensor.inma_mobile_phone_wifi_ssid') == 'home' %}
         yes
       {% else %}
-        {% if (states('device_tracker.android_9a65dc19e163950') == 'not_home' and states('device_tracker.one_a2003') == 'home') or (states('device_tracker.unknown') == 'not_home' and states('device_tracker.a0001') == 'home') %}
+        {% if (states('device_tracker.8c_7a_3d_be_44_82') == 'not_home' and states('device_tracker.poco_f3') == 'home') or (states('device_tracker.unknown') == 'not_home' and states('device_tracker.a0001') == 'home') %}
           yes
         {% else %}
           no
